@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
                     <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer" onClick={()=>router.push('/resume')}>Resume Correction</li>
                     <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer" onClick={()=>router.push('/path')}>Job Searching</li>
                     <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer">Cover Letter Generation</li>
-                    <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer">Interview Questions</li>
+                    <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer"onClick={()=>router.push('/InterviewQuestions')}>Interview Questions</li>
                     <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer">OA Practice</li>
                 </ul>
             </div>
