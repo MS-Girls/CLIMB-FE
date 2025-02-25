@@ -16,7 +16,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex w-full">
         <Sidebar/>
+        <div className="flex-1 overflow-hidden">
         {children}
+        </div>
+
       </body>
     </html>
   );
