@@ -159,7 +159,7 @@ export default function OARound() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-blue-50 to-indigo-50 pl-64">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="py-4 px-6 bg-white shadow-sm border-b border-indigo-100">
         <div className="max-w-6xl mx-auto flex items-center">
           <div className="h-10 w-10 bg-indigo-600 rounded-full flex items-center justify-center mr-3">

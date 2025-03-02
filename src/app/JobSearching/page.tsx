@@ -51,7 +51,7 @@ export default function JobSearching() {
   };
 
   return (
-    <div className="ml-64 p-8">
+    <div className="p-8 flex flex-col h-screen overflow-y-auto">
       <div className="bg-gradient-to-r from-white-50 to-indigo-50 p-8 rounded-xl mb-8 shadow-sm">
         <h2 className="text-2xl font-bold text-gray-800 mb-3">Find Your Perfect Job Match</h2>
         <p className="text-gray-600 mb-6 max-w-2xl">Upload your resume and our AI-powered job matching system will analyze your skills and experience to find the most relevant opportunities for you.</p>

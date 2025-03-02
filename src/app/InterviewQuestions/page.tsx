@@ -60,7 +60,7 @@ export default function ChatBot() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-blue-50 to-indigo-50 pl-64">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       {/* Header */}
       <header className="py-4 px-6 bg-white shadow-sm border-b border-indigo-100">
         <div className="max-w-4xl mx-auto flex items-center">
