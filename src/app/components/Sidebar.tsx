@@ -6,7 +6,7 @@ const Sidebar = () => {
     const router = useRouter();
     const [activeItem, setActiveItem] = useState('');
     
-    const handleNavigation = (path, itemName) => {
+    const handleNavigation = (path:any, itemName:any) => {
         setActiveItem(itemName);
         router.push(path);
     };
@@ -20,7 +20,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="fixed top-0 left-0 h-screen w-64 bg-primary text-text flex flex-col justify-between overflow-y-auto z-10">
+        <div className="h-screen w-64 bg-primary text-text flex flex-col justify-between overflow-y-auto z-10">
             <div className="mt-10">
                 <h1 className="text-2xl font-bold text-center mb-10">Features</h1>
                 <ul className="space-y-4">
