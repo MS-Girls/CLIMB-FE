@@ -1,19 +1,38 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
     const router = useRouter();
+    const [activeItem, setActiveItem] = useState('');
+    
+    const handleNavigation = (path, itemName) => {
+        setActiveItem(itemName);
+        router.push(path);
+    };
+    
+    const menuItems = [
+        { name: 'Resume Correction', path: '/resume' },
+        { name: 'Job Searching', path: '/JobSearching' },
+        { name: 'Cover Letter Generation', path: '/CoverLetter' },
+        { name: 'Interview Questions', path: '/InterviewQuestions' },
+        { name: 'OA Practice', path: '/OARound' }
+    ];
+
     return (
-        <div className="h-screen w-64 bg-primary text-text flex flex-col justify-between">
+        <div className="fixed top-0 left-0 h-screen w-64 bg-primary text-text flex flex-col justify-between overflow-y-auto z-10">
             <div className="mt-10">
                 <h1 className="text-2xl font-bold text-center mb-10">Features</h1>
                 <ul className="space-y-4">
-                    <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer" onClick={()=>router.push('/resume')}>Resume Correction</li>
-                    <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer" onClick={()=>router.push('/path')}>Job Searching</li>
-                    <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer">Cover Letter Generation</li>
-                    <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer"onClick={()=>router.push('/InterviewQuestions')}>Interview Questions</li>
-                    <li className="px-4 py-2 hover:bg-secondary-200 cursor-pointer">OA Practice</li>
+                    {menuItems.map((item) => (
+                        <li 
+                            key={item.name}
+                            className={`px-4 py-2 hover:bg-secondary-200 cursor-pointer transition-colors duration-200 ${activeItem === item.name ? 'bg-secondary-200' : ''}`}
+                            onClick={() => handleNavigation(item.path, item.name)}
+                        >
+                            {item.name}
+                        </li>
+                    ))}
                 </ul>
             </div>
             <div className="mb-10 text-center">
