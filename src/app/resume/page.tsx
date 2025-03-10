@@ -1,6 +1,8 @@
 "use client";
 import { useState, useRef, FormEvent, ChangeEvent } from "react";
 import { Send, FileUp, Bot, User, Paperclip } from "lucide-react";
+import axios from "axios";
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   role: "user" | "bot";
@@ -20,52 +22,70 @@ export default function ResumePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+      const file = e.target.files[0];
+      setFile(file);
       setIsUploading(true);
-
-      // Simulate processing
-      setTimeout(() => {
-        setIsUploading(false);
+  
+      const formData = new FormData();
+      formData.append("ResumeFile", file);
+  
+      try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/Resume`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
         setMessages((prev) => [
           ...prev,
           {
             role: "user",
-            content: `Uploaded file: ${e.target.files![0].name}`,
+            content: `Uploaded file: ${file.name}`,
           },
           {
             role: "bot",
-            content: `I've received your resume: ${
-              e.target.files![0].name
-            }. What would you like to know about your resume?`,
+            content: response.data.Response || "Resume analysis complete.",
           },
         ]);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "bot",
+            content: "Failed to process the resume. Please try again.",
+          },
+        ]);
+      } finally {
+        setIsUploading(false);
         scrollToBottom();
-      }, 1500);
+      }
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (input.trim() === "") return;
+  // const handleSubmit = (e: FormEvent) => {
+  //   e.preventDefault();
+  //   if (input.trim() === "") return;
 
-    const userMessage = { role: "user" as const, content: input };
-    setMessages((prev) => [...prev, userMessage]);
-    setInput("");
+  //   const userMessage = { role: "user" as const, content: input };
+  //   setMessages((prev) => [...prev, userMessage]);
+  //   setInput("");
 
-    // Simulate bot response
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "bot",
-          content: `This is a simulated response to: "${input}"`,
-        },
-      ]);
-      scrollToBottom();
-    }, 1000);
-  };
+  //   // Simulate bot response
+  //   setTimeout(() => {
+  //     setMessages((prev) => [
+  //       ...prev,
+  //       {
+  //         role: "bot",
+  //         content: `This is a simulated response to: "${input}"`,
+  //       },
+  //     ]);
+  //     scrollToBottom();
+  //   }, 1000);
+  // };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -73,6 +93,21 @@ export default function ResumePage() {
 
   const triggerFileInput = () => {
     fileInputRef.current?.click();
+  };
+
+  // Function to render message content with formatting
+  const renderMessageContent = (content: string) => {
+    // Check if the content is from the bot and contains markdown-like formatting
+    if (content.includes("**") || content.includes("1.") || content.includes("2.")) {
+      return (
+        <div className="prose prose-sm max-w-none">
+          <ReactMarkdown>
+            {content}
+          </ReactMarkdown>
+        </div>
+      );
+    }
+    return content;
   };
 
   return (
@@ -122,7 +157,13 @@ export default function ResumePage() {
                       : "bg-white text-gray-800 shadow-sm border border-gray-100"
                   }`}
                 >
-                  {message.content}
+                  {message.role === "bot" ? (
+                    <div className="whitespace-pre-wrap">
+                      {renderMessageContent(message.content)}
+                    </div>
+                  ) : (
+                    message.content
+                  )}
                 </div>
               </div>
             </div>
@@ -146,7 +187,7 @@ export default function ResumePage() {
                 Click to upload your resume
               </p>
               <p className="mt-1 text-xs text-indigo-500">
-                PDF, DOCX up to 10MB
+                PDF upto 10MB
               </p>
             </div>
             <input
@@ -175,7 +216,7 @@ export default function ResumePage() {
       )}
 
       {/* Input area */}
-      <div className="p-4 bg-white border-t border-gray-200">
+      {/* <div className="p-4 bg-white border-t border-gray-200">
         <div className="max-w-4xl mx-auto">
           <form onSubmit={handleSubmit} className="flex items-center">
             <button
@@ -210,10 +251,10 @@ export default function ResumePage() {
               }`}
             >
               <Send size={18} />
-            </button>
+            </button> 
           </form>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
