@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { ExternalLink, CheckCircle } from "lucide-react";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_REQUEST_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function OARound() {
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
@@ -16,7 +16,7 @@ export default function OARound() {
       setLoading(true);
       setError(null);
 
-      fetch(`${API_BASE_URL}/get-problems?companyName=${selectedCompany.toLowerCase()}`)
+      fetch(`${API_BASE_URL}/api/BlobStorage/get-problems?companyName=${selectedCompany.toLowerCase()}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error("Failed to fetch problems");
