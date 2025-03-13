@@ -134,7 +134,7 @@ const page = () => {
           <GetJobDescription setJobDesc={setJobDesc} />
         )}
         {showUploadMsg && !showUMsgResp && <UploadResume setFile={setFile} />}
-        {showSubmitMsg && <SubmitButton />}
+        {showSubmitMsg && <SubmitButton title={jobTitle} desc={jobDesc} resume={file} />}
       </div>
     </div>
   );

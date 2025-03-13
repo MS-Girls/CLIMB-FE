@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { ExternalLink, CheckCircle } from "lucide-react";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_REQUEST_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function OARound() {
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
