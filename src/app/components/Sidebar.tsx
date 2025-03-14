@@ -13,7 +13,7 @@ const Sidebar = () => {
     
     const menuItems = [
         { name: 'Resume Correction', path: '/resume' },
-        { name: 'Job Searching', path: '/JobSearching' },
+        { name: 'ResumeQA', path: '/ResumeQA' },
         { name: 'Cover Letter Generation', path: '/CoverLetter' },
         { name: 'Interview Questions', path: '/InterviewQuestions' },
         { name: 'OA Practice', path: '/OARound' }
