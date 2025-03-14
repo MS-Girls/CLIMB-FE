@@ -168,7 +168,7 @@ export default function ChatBot() {
     }));
   };
 
-  const resumeqnsprompt = `Generate 3 resume based interview questions based on the skill sets, projects, achievements from the given resume. Do not ask any irrelevant questions. Only ask those questions that shall be useful to determine the eligibility to recruit a preson.Please note that you will have to give the 3 questions as an array with each element being the string representing the question. You will return only the array such that if I parse your the response returned by you I should get a perfectly working array. Do not return any other text other than the array that is to be parsed. The resume is as follows.\n\n${resumecont}`;
+  const resumeqnsprompt = `Generate 20 resume based interview questions based on the skill sets, projects, achievements from the given resume. Do not ask any irrelevant questions. Only ask those questions that shall be useful to determine the eligibility to recruit a preson.Please note that you will have to give the 20 questions as an array with each element being the string representing the question. You will return only the array such that if I parse your the response returned by you I should get a perfectly working array. Do not return any other text other than the array that is to be parsed. The resume is as follows.\n\n${resumecont}`;
 
   const checkansprompt =
     "Check if the answer given to the question is correct. Give a one line review";
