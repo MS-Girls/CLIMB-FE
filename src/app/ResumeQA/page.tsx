@@ -76,7 +76,6 @@ export default function ChatBot() {
           },
         }
       );
-      console.log(response.data);
       setresumecont(response.data);
       setMessages((prev) => [
         ...prev,
@@ -135,7 +134,6 @@ export default function ChatBot() {
     const userMessage = { role: "user" as const, content: input };
     setMessages((prev) => [...prev, userMessage]);
     const responsereview = await getAPIResponse(checkansprompt);
-    console.log(responsereview);
     const msg: Message = {
       role: "bot",
       content: responsereview,
@@ -148,7 +146,7 @@ export default function ChatBot() {
           "Congratulations!! You have reached the end of the Interview Questions test. Thank you!!",
       };
       setMessages((prev) => [...prev, msg]);
-      setTestMode(true);
+      toggleTestMode();
       setptr(0);
     } else {
       getNextQn(ptr, qnsarray);
@@ -197,7 +195,6 @@ export default function ChatBot() {
       setMessages((prev) => [...prev, msg]);
       const response = await getAPIResponse(resumeqnsprompt);
       const questionsArray = extractArrayFromString(response); // parsed array
-      console.log(questionsArray);
       setqnsarray(questionsArray);
       getNextQn(ptr, questionsArray);
     } else {
@@ -206,7 +203,6 @@ export default function ChatBot() {
         content: "The Interview test has ended. Thank you!!",
       };
       setMessages((prev) => [...prev, msg]);
-      setTestMode(true);
     }
     scrollToBottom();
   };
