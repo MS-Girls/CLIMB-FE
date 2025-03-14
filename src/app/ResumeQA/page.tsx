@@ -116,7 +116,7 @@ export default function ChatBot() {
       };
 
       const response = await axios.post<ChatResponse>(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/Resume/chat`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/Resume/resumeextraction`,
         chatRequest
       );
       return response.data.Response; // returns the array as string
