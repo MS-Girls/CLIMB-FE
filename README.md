@@ -2,7 +2,7 @@
 
 ## Steps to Set up the Development Server
 
-The Chat Application project uses Next.js for the frontend. There are two methods that you could use to set up the development environment. One is to set up the environment locally in your machine which requires certain pre-requisites to be installed on your machine. The Second method is to use docker. The following are the steps outlined to do the same.
+This project uses Next.js for the frontend. There are two methods that you could use to set up the development environment. One is to set up the environment locally in your machine which requires certain pre-requisites to be installed on your machine. The Second method is to use docker. The following are the steps outlined to do the same.
 
 ## Local Development Environment
 
@@ -40,6 +40,7 @@ npm install
 4. Set up environment variables
 
 Create a ```.env``` file and the add the following environment variables
+
 ```shell
 NEXT_PUBLIC_BACKEND_URL=
 ```
@@ -79,7 +80,7 @@ cd CLIMB-FE
 
 2. Set up environment variables
 
-Create a ```.env``` file and configure the environment variables
+Create a ```.env``` file and set up the environment variables
 
 3. To build docker image and start the container execute
 
