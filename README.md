@@ -2,7 +2,7 @@
 
 ## Steps to Set up the Development Server
 
-This project uses ASP.NET Core for the frontend. There are two methods that you could use to set up the development environment. One is to set up the environment locally in your machine which requires certain pre-requisites to be installed on your machine. The Second method is to use docker. The following are the steps outlined to do the same.
+This project uses Next.js for the frontend. There are two methods that you could use to set up the development environment. One is to set up the environment locally in your machine which requires certain pre-requisites to be installed on your machine. The Second method is to use docker. The following are the steps outlined to do the same.
 
 ## Local Development Environment
 
@@ -85,7 +85,7 @@ Create a ```.env``` file and set up the environment variables
 3. To build docker image and start the container execute
 
 ```shell
-docker build -t CLIMB-frontend:latest .
+docker build --build-arg NEXT_PUBLIC_BACKEND_URL=<your-backend-baseurl> -t CLIMB-frontend:latest .
 docker run -d -p 3000:3000 --env-file .env  --name CLIMB-frontend CLIMB-frontend:latest
 ```
 
